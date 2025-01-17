@@ -25,7 +25,7 @@ final _formkey= GlobalKey<FormState>();
 registration()async{
   if(password!=null && name!=null && email!=null){
     try{
-      // ignore: unused_local_variable
+      // ignore: unused_local_variables
       UserCredential userCredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email!, password: password!);
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
