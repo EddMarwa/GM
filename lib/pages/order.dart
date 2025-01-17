@@ -74,12 +74,12 @@ class _OrderState extends State<Order> {
                                       ds["Product"],
                                       style: AppWidget.semiboldTextFeildStyle(),
                                     ),
-                                    Text("\$" + ds["Price"],
+                                    Text("\$${ds["Price"]}",
                                         style: TextStyle(
                                             color: Color(0xFFfd6f3e),
                                             fontSize: 23.0,
                                             fontWeight: FontWeight.bold)),
-                                    Text("Status : " + ds["Status"],
+                                    Text("Status : ${ds["Status"]}",
                                         style: TextStyle(
                                             color: Color(0xFFfd6f3e),
                                             fontSize: 18.0,

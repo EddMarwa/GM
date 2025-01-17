@@ -39,11 +39,11 @@ class _SignUpState extends State<SignUp> {
           ));
 
           // Generate a random ID for the user
-          String Id = randomAlphaNumeric(10);
+          String id = randomAlphaNumeric(10);
 
           // Save user details to SharedPreferences
           await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
-          await SharedPreferenceHelper().saveUserId(Id);
+          await SharedPreferenceHelper().saveUserId(id); // updated to id
           await SharedPreferenceHelper().saveUserName(namecontroller.text);
           await SharedPreferenceHelper().saveUserImage(
               "https://firebasestorage.googleapis.com/v0/b/barberapp-ebcc1.appspot.com/o/icon1.png?alt=media&token=0fad24a5-a01b-4d67-b4a0-676fbc75b34a");
@@ -52,12 +52,12 @@ class _SignUpState extends State<SignUp> {
           Map<String, dynamic> userInfoMap = {
             "Name": namecontroller.text,
             "Email": mailcontroller.text,
-            "Id": Id,
+            "Id": id, // updated to id
             "Image":
                 "https://firebasestorage.googleapis.com/v0/b/barberapp-ebcc1.appspot.com/o/icon1.png?alt=media&token=0fad24a5-a01b-4d67-b4a0-676fbc75b34a"
           };
 
-          await DatabaseMethods().addUserDetails(userInfoMap, Id);
+          await DatabaseMethods().addUserDetails(userInfoMap, id); // updated to id
 
           // Navigate to bottom navigation page (home screen) if still mounted
           if (!mounted) return;
