@@ -187,7 +187,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      await AuthMethods().SignOut().then((value) {
+                      await AuthMethods().signOut().then((value) {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

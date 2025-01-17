@@ -71,7 +71,7 @@ class _CategoryProductState extends State<CategoryProduct> {
                           Row(
                             children: [
                               Text(
-                                "\$" + ds["Price"],
+                                "\$${ds['Price']}",
                                 style: TextStyle(
                                     color: Color(0xFFfd6f3e),
                                     fontSize: 22.0,

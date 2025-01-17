@@ -31,12 +31,16 @@ class _ProductDetailState extends State<ProductDetail> {
     name = await SharedPreferenceHelper().getUserName();
     mail = await SharedPreferenceHelper().getUserEmail();
     image = await SharedPreferenceHelper().getUserImage();
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   ontheload() async {
     await getthesharedpref();
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -180,35 +184,39 @@ class _ProductDetailState extends State<ProductDetail> {
         };
         await DatabaseMethods().orderDetails(orderInfoMap);
         // ignore: use_build_context_synchronously
-        showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                          ),
-                          Text("Payment Successfull")
-                        ],
-                      )
-                    ],
-                  ),
-                ));
+        if (mounted) {
+          showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                            ),
+                            Text("Payment Successfull")
+                          ],
+                        )
+                      ],
+                    ),
+                  ));
+        }
         paymentIntent = null;
       }).onError((error, stackTrace) {
         print("Error is :---> $error $stackTrace");
       });
     } on StripeException catch (e) {
       print("Error is:---> $e");
-      showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-                content: Text("Cancelled"),
-              ));
+      if (mounted) {
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  content: Text("Cancelled"),
+                ));
+      }
     } catch (e) {
       print('$e');
     }
