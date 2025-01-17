@@ -13,10 +13,10 @@ class CategoryProduct extends StatefulWidget {
 }
 
 class _CategoryProductState extends State<CategoryProduct> {
-  Stream? CategoryStream;
+  Stream? categoryStream;
 
   getontheload() async {
-    CategoryStream = await DatabaseMethods().getProducts(widget.category);
+    categoryStream = await DatabaseMethods().getProducts(widget.category);
     setState(() {});
   }
 
@@ -28,7 +28,7 @@ class _CategoryProductState extends State<CategoryProduct> {
 
   Widget allProducts() {
     return StreamBuilder(
-        stream: CategoryStream,
+        stream: categoryStream,
         builder: (context, AsyncSnapshot snapshot) {
           return snapshot.hasData
               ? GridView.builder(

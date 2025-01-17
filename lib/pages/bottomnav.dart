@@ -14,17 +14,17 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;
 
-  late Home HomePage;
+  late Home homePage;
   late Order order;
   late Profile profile;
   int currentTabIndex = 0;
 
   @override
   void initState() {
-    HomePage = Home();
+    homePage = Home();
     order = Order();
     profile = Profile();
-    pages = [HomePage, order, profile];
+    pages = [homePage, order, profile];
     super.initState();
   }
 

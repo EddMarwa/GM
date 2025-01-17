@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     "images/TV.png"
   ];
 
-  List Categoryname = [
+  List categoryname = [
     "Headphones",
     "Laptop",
     "Watch",
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
       search = true;
     });
 
-    var CapitalizedValue =
+    var capitalizedValue =
         value.substring(0, 1).toUpperCase() + value.substring(1);
     if (queryResultSet.isEmpty && value.length == 1) {
       DatabaseMethods().search(value).then((QuerySnapshot docs) {
@@ -55,7 +55,7 @@ queryResultSet.add(docs.docs[i].data());
     } else{
 tempSearchStore=[];
 for (var element in queryResultSet) { 
-  if(element['UpdatedName'].startsWith(CapitalizedValue)){
+  if(element['UpdatedName'].startsWith(capitalizedValue)){
     setState(() {
       tempSearchStore.add(element);
     });
@@ -220,7 +220,7 @@ for (var element in queryResultSet) {
                               itemBuilder: (context, index) {
                                 return CategoryTile(
                                   image: categories[index],
-                                  name: Categoryname[index],
+                                  name: categoryname[index],
                                 );
                               }),
                         ),

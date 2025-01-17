@@ -66,7 +66,7 @@ class _AllOrdersState extends State<AllOrders> {
                                       width:
                                           MediaQuery.of(context).size.width / 3,
                                       child: Text(
-                                        "Name : " + ds["Name"],
+                                        "Name : ${ds["Name"]}",
                                         style:
                                             AppWidget.semiboldTextFeildStyle(),
                                       ),
@@ -78,7 +78,7 @@ class _AllOrdersState extends State<AllOrders> {
                                       width:
                                           MediaQuery.of(context).size.width / 2,
                                       child: Text(
-                                        "Email : " + ds["Email"],
+                                        "Email : ${ds["Email"]}",
                                         style: AppWidget.lightTextFeildStyle(),
                                       ),
                                     ),
@@ -89,11 +89,13 @@ class _AllOrdersState extends State<AllOrders> {
                                       ds["Product"],
                                       style: AppWidget.semiboldTextFeildStyle(),
                                     ),
-                                    Text("\$" + ds["Price"],
-                                        style: TextStyle(
-                                            color: Color(0xFFfd6f3e),
-                                            fontSize: 23.0,
-                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                      "\$${ds["Price"]}",
+                                      style: TextStyle(
+                                          color: Color(0xFFfd6f3e),
+                                          fontSize: 23.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                     SizedBox(
                                       height: 10.0,
                                     ),
