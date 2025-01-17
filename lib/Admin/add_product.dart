@@ -52,6 +52,7 @@ class _AddProductState extends State<AddProduct> {
         await DatabaseMethods().addAllProducts(addProduct);
         selectedImage = null;
         namecontroller.text = "";
+        
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
