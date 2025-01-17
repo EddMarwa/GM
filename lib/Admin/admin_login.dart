@@ -113,23 +113,30 @@ class _AdminLoginState extends State<AdminLogin> {
     FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
       for (var result in snapshot.docs) {
         if (result.data()['username'] != usernamecontroller.text.trim()) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.redAccent,
-              content: Text(
-                "Your id is not correct",
-                style: TextStyle(fontSize: 20.0),
-              )));
+          // Use the mounted check before calling context-dependent methods
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.redAccent,
+                content: Text(
+                  "Your id is not correct",
+                  style: TextStyle(fontSize: 20.0),
+                )));
+          }
         } else if (result.data()['password'] !=
             userpasswordcontroller.text.trim()) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.redAccent,
-              content: Text(
-                "Your password is not correct",
-                style: TextStyle(fontSize: 20.0),
-              )));
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.redAccent,
+                content: Text(
+                  "Your password is not correct",
+                  style: TextStyle(fontSize: 20.0),
+                )));
+          }
         } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeAdmin()));
+          if (mounted) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomeAdmin()));
+          }
         }
       }
     });

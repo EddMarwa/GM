@@ -13,34 +13,40 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   String email = "", password = "";
-
   TextEditingController mailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-
   final _formkey = GlobalKey<FormState>();
 
-  userLogin() async {
+  // Modified login function with mounted check
+  Future<void> userLogin() async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      Navigator.push(
+      // Check if the widget is still mounted before navigating
+      if (mounted) {
+        Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => BottomNav()));
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
               "No User Found for that Email",
               style: TextStyle(fontSize: 20.0),
             )));
+        }
       } else if (e.code == "wrong-password") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
               "Wrong Password Provided by User",
               style: TextStyle(fontSize: 20.0),
             )));
+        }
       }
     }
   }

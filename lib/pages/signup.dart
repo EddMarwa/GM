@@ -30,7 +30,9 @@ class _SignUpState extends State<SignUp> {
                 email: email!, password: password!);
 
         if (userCredential.user != null) {
-          // User created successfully
+          // Ensure widget is still mounted before showing Snackbar
+          if (!mounted) return;
+
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.green,
             content: Text("Registered Successfully", style: TextStyle(fontSize: 20.0)),
@@ -57,11 +59,14 @@ class _SignUpState extends State<SignUp> {
 
           await DatabaseMethods().addUserDetails(userInfoMap, Id);
 
-          // Navigate to bottom navigation page (home screen)
+          // Navigate to bottom navigation page (home screen) if still mounted
+          if (!mounted) return;
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => BottomNav()));
         }
       } on FirebaseException catch (e) {
+        if (!mounted) return; // Check if mounted before showing Snackbar
+
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.redAccent,
