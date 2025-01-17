@@ -9,17 +9,20 @@ import 'package:shoppingapp/widget/support_widget.dart';
 import 'package:http/http.dart' as http;
 
 class ProductDetail extends StatefulWidget {
-  String image, name, detail, price;
-  ProductDetail(
-      {super.key,
-      required this.detail,
-      required this.image,
-      required this.name,
-      required this.price});
+  final String image, name, detail, price; // Marking these fields as final
+
+  const ProductDetail({
+    super.key,
+    required this.detail,
+    required this.image,
+    required this.name,
+    required this.price,
+  });
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
 }
+
 
 class _ProductDetailState extends State<ProductDetail> {
   String? name, mail, image;

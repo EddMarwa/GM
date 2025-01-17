@@ -436,8 +436,10 @@ for (var element in queryResultSet) {
 }
 
 class CategoryTile extends StatelessWidget {
-  String image, name;
-  CategoryTile({super.key, required this.image, required this.name});
+  final String image;
+  final String name;
+
+  const CategoryTile({super.key, required this.image, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -449,7 +451,6 @@ class CategoryTile extends StatelessWidget {
                 builder: (context) => CategoryProduct(category: name)));
       },
       child: Container(
-        
         padding: EdgeInsets.all(20),
         margin: EdgeInsets.only(right: 20.0),
         decoration: BoxDecoration(
@@ -469,6 +470,4 @@ class CategoryTile extends StatelessWidget {
       ),
     );
   }
-
-
 }
