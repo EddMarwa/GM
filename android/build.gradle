@@ -1,33 +1,35 @@
 buildscript {
     ext.kotlin_version = '1.7.10'
     repositories {
-        google()
+        google()  // Ensure the Google repository is included
         mavenCentral()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath 'id("com.google.gms.google-services") version "4.4.2" apply false'
-       // classpath 'com.google.gms:google-services:4.4.1' 
+        classpath 'com.google.gms:google-services:4.4.2'  // Correct version for Firebase integration
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     repositories {
-        google()
+        google()  // Ensure the Google repository is included
         mavenCentral()
     }
 }
 
 rootProject.buildDir = '../build'
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
+
 subprojects {
     project.evaluationDependsOn(':app')
 }
 
+// Registering clean task
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
